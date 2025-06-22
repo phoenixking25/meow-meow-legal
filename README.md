@@ -8,13 +8,13 @@ Meow Meow is a cute cat widget app that displays adorable cat images on your hom
 
 ## 📄 Legal Documents
 
-- **[Privacy Policy](https://phoenixking25.github.io/meow-meow-legal/privacy-policy.html)** - How we handle your data (spoiler: we don't collect any)
-- **[Terms & Conditions](https://phoenixking25.github.io/meow-meow-legal/terms-and-conditions.html)** - Terms of service for app usage
-- **[Delete Account Data](https://phoenixking25.github.io/meow-meow-legal/delete-account.html)** - Information about data deletion
+- **[Privacy Policy](https://phoenixking25.github.io/meow-meow-legal/docs/privacy-policy.html)** - How we handle your data (spoiler: we don't collect any)
+- **[Terms & Conditions](https://phoenixking25.github.io/meow-meow-legal/docs/terms-and-conditions.html)** - Terms of service for app usage
+- **[Delete Account Data](https://phoenixking25.github.io/meow-meow-legal/docs/delete-account.html)** - Information about data deletion
 
 ## 🌐 Live Site
 
-The legal pages are hosted at: **https://phoenixking25.github.io/meow-meow-legal/**
+The legal pages are hosted at: **https://phoenixking25.github.io/meow-meow-legal/docs/**
 
 ## 📞 Contact
 
