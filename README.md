@@ -1,26 +1,20 @@
-# Meow Meow - Legal Pages
+# Meow Meow 🐱
 
-This repository hosts the legal documentation for the Meow Meow cat widget app.
+**The cutest cat widgets for your home screen!**
 
-## 📱 About Meow Meow
+Welcome to the official website for Meow Meow. We are currently building the most adorable collection of cat widgets to brighten up your day.
 
-Meow Meow is a cute cat widget app that displays adorable cat images on your home screen. The app is privacy-focused and doesn't collect any personal data.
+## 🚀 Join the Waitlist
+
+Visit our [website](https://phoenixking25.github.io/meow-meow-legal/) to join the waitlist and get early access!
 
 ## 📄 Legal Documents
 
-- **[Privacy Policy](https://phoenixking25.github.io/meow-meow-legal/docs/privacy-policy.html)** - How we handle your data (spoiler: we don't collect any)
-- **[Terms & Conditions](https://phoenixking25.github.io/meow-meow-legal/docs/terms-and-conditions.html)** - Terms of service for app usage
-- **[Delete Account Data](https://phoenixking25.github.io/meow-meow-legal/docs/delete-account.html)** - Information about data deletion
-
-## 🌐 Live Site
-
-The legal pages are hosted at: **https://phoenixking25.github.io/meow-meow-legal/docs/**
+We care about your privacy and rights.
+- **[Privacy Policy](https://phoenixking25.github.io/meow-meow-legal/docs/privacy-policy.html)**
+- **[Terms & Conditions](https://phoenixking25.github.io/meow-meow-legal/docs/terms-and-conditions.html)**
+- **[Delete Account Data](https://phoenixking25.github.io/meow-meow-legal/docs/delete-account.html)**
 
 ## 📞 Contact
 
-- **Issues**: [Report on main repository](https://github.com/phoenixking25/meow-meow/issues)
-- **App Store**: Coming soon to Google Play Store and Apple App Store
-
----
-
-*This repository contains only legal documentation. The app source code is maintained in a separate private repository.*
+- **Issues**: [Report on GitHub](https://github.com/phoenixking25/meow-meow/issues)
