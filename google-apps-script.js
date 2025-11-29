@@ -3,7 +3,7 @@
 // 3. Delete any code in the editor and paste this entire script.
 // 4. Click "Deploy" > "New deployment".
 // 5. Select type: "Web app".
-// 6. Description: "Meow Meow Waitlist".
+// 6. Description: "Meow Meow Waitlist v2".
 // 7. Execute as: "Me" (your email).
 // 8. Who has access: "Anyone" (IMPORTANT!).
 // 9. Click "Deploy".
@@ -23,13 +23,31 @@ function doPost(e) {
 
     try {
         const doc = SpreadsheetApp.getActiveSpreadsheet();
-        const sheet = doc.getSheetByName(SHEET_NAME);
+        let sheet = doc.getSheetByName(SHEET_NAME);
+
+        // Fallback: If sheet doesn't exist, use the first sheet or create one
+        if (!sheet) {
+            sheet = doc.getSheets()[0];
+            // Optional: Rename it to avoid confusion later? 
+            // sheet.setName(SHEET_NAME); 
+        }
+
+        // Ensure headers exist
+        if (sheet.getLastRow() === 0) {
+            const initialHeaders = ["timestamp", "email"];
+            sheet.getRange(1, 1, 1, initialHeaders.length).setValues([initialHeaders]);
+        }
 
         const headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
         const nextRow = sheet.getLastRow() + 1;
 
+        // Map incoming parameters to headers (Case Insensitive)
         const newRow = headers.map(function (header) {
-            return header === 'timestamp' ? new Date() : e.parameter[header];
+            if (header.toLowerCase() === 'timestamp') return new Date();
+
+            // Find matching key in e.parameter (case insensitive)
+            const paramKey = Object.keys(e.parameter).find(key => key.toLowerCase() === header.toLowerCase());
+            return paramKey ? e.parameter[paramKey] : "";
         });
 
         sheet.getRange(nextRow, 1, 1, newRow.length).setValues([newRow]);
@@ -45,8 +63,9 @@ function doPost(e) {
     }
 
     catch (e) {
+        console.error("Error in doPost:", e); // Log to Apps Script dashboard
         return ContentService
-            .createTextOutput(JSON.stringify({ 'result': 'error', 'error': e }))
+            .createTextOutput(JSON.stringify({ 'result': 'error', 'error': e.toString() }))
             .setMimeType(ContentService.MimeType.JSON);
     }
 
@@ -56,7 +75,7 @@ function doPost(e) {
 }
 
 function sendFacebookEvent(email) {
-    if (ACCESS_TOKEN === "YOUR_ACCESS_TOKEN_HERE") {
+    if (!ACCESS_TOKEN || ACCESS_TOKEN === "YOUR_ACCESS_TOKEN_HERE") {
         console.log("Skipping Facebook Event: Access Token not set.");
         return;
     }
@@ -113,7 +132,10 @@ function hashEmail(email) {
 
 function setup() {
     const doc = SpreadsheetApp.getActiveSpreadsheet();
-    const sheet = doc.getSheetByName(SHEET_NAME);
+    let sheet = doc.getSheetByName(SHEET_NAME);
+    if (!sheet) {
+        sheet = doc.insertSheet(SHEET_NAME);
+    }
     sheet.getRange(1, 1).setValue("timestamp");
     sheet.getRange(1, 2).setValue("email");
 }
