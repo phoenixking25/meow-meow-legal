@@ -10,6 +10,8 @@
 // 10. Copy the "Web App URL" and paste it in the chat.
 
 const SHEET_NAME = "Meow Meow";
+const PIXEL_ID = "25424083083870050";
+const ACCESS_TOKEN = "EAAapIUvypdkBQHUrL1izBPesc5Ulfxp9rUCjiXTQa3L4EZBLahU00Os0Vb0bceiKlXW8Dx3WMlS1zotaHzSbHDjZBceY4cZC52Q8xspq3XYqsc59JtAXiJkoPupWeXoSiSR1cDEJjZA3SKwglxmJ34T0rPXh8KfahTQp2myBSqZCAbbqVQRwYFbVP8MMsPgZDZD"; // Replace with your actual access token
 
 function doGet(e) {
     return ContentService.createTextOutput("Meow! The script is working and accessible! 🐱");
@@ -32,6 +34,11 @@ function doPost(e) {
 
         sheet.getRange(nextRow, 1, 1, newRow.length).setValues([newRow]);
 
+        // Send event to Facebook CAPI
+        if (e.parameter.email) {
+            sendFacebookEvent(e.parameter.email);
+        }
+
         return ContentService
             .createTextOutput(JSON.stringify({ 'result': 'success', 'row': nextRow }))
             .setMimeType(ContentService.MimeType.JSON);
@@ -46,6 +53,62 @@ function doPost(e) {
     finally {
         lock.releaseLock();
     }
+}
+
+function sendFacebookEvent(email) {
+    if (ACCESS_TOKEN === "YOUR_ACCESS_TOKEN_HERE") {
+        console.log("Skipping Facebook Event: Access Token not set.");
+        return;
+    }
+
+    const hashedEmail = hashEmail(email);
+    const url = `https://graph.facebook.com/v18.0/${PIXEL_ID}/events?access_token=${ACCESS_TOKEN}`;
+
+    const payload = {
+        "data": [
+            {
+                "event_name": "Lead",
+                "event_time": Math.floor(new Date().getTime() / 1000),
+                "action_source": "website",
+                "user_data": {
+                    "em": [hashedEmail]
+                },
+                "custom_data": {
+                    "currency": "USD",
+                    "value": 0
+                }
+            }
+        ]
+    };
+
+    const options = {
+        "method": "post",
+        "contentType": "application/json",
+        "payload": JSON.stringify(payload)
+    };
+
+    try {
+        UrlFetchApp.fetch(url, options);
+    } catch (e) {
+        console.error("Error sending to Facebook CAPI: " + e);
+    }
+}
+
+function hashEmail(email) {
+    const cleanEmail = email.trim().toLowerCase();
+    const digest = Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_256, cleanEmail);
+    let txtHash = "";
+    for (let i = 0; i < digest.length; i++) {
+        let hashVal = digest[i];
+        if (hashVal < 0) {
+            hashVal += 256;
+        }
+        if (hashVal.toString(16).length == 1) {
+            txtHash += "0";
+        }
+        txtHash += hashVal.toString(16);
+    }
+    return txtHash;
 }
 
 function setup() {
