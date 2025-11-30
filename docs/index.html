@@ -270,15 +270,19 @@
             <div class="hero-content">
                 <div class="cat-emoji">🐱</div>
                 <h1>Meow Meow</h1>
-                <p class="subtitle">The cutest cat widgets for your home screen.<br>Join the waitlist to get early
-                    access!</p>
+                <p class="subtitle">The cutest cat widgets for your home screen.<br>
+                    <strong style="color: #34a853; font-size: 1.1em;">🤖 For Android Devices Only</strong><br>
+                    <span style="font-size: 0.95em; color: #888;">Available exclusively on Google Play Store</span><br>
+                    <span style="font-size: 0.9em; color: #999; font-style: italic;">🍎 iOS Coming Soon</span>
+                </p>
 
                 <form class="waitlist-form" id="waitlistForm">
                     <input type="email" placeholder="Enter your email..." required>
                     <button type="submit">Join Waitlist</button>
                 </form>
                 <div class="success-message" id="successMessage">
-                    ✨ Thanks for joining! We'll meow at you soon! 🐾
+                    ✨ Thanks for joining! You'll receive an invite link to our Play Store closed group shortly via
+                    email. 🐾
                 </div>
             </div>
         </div>
@@ -302,6 +306,10 @@
         </div>
 
         <footer class="footer">
+            <p style="font-weight: 600; color: #34a853; margin-bottom: 15px;">
+                🤖 Android Only • Available on Google Play Store<br>
+                <span style="font-size: 0.9em; color: #999; font-style: italic;">🍎 iOS Coming Soon</span>
+            </p>
             <a href="privacy-policy.html">Privacy Policy</a> •
             <a href="terms-and-conditions.html">Terms & Conditions</a> •
             <a href="delete-account.html">Delete Data</a>
@@ -322,7 +330,7 @@
                 emailInput.disabled = true;
 
                 // Google Apps Script Web App URL
-                const scriptURL = 'https://script.google.com/macros/s/AKfycbwyxVPD5gNygzq0vxUQREsiSfMHNyLPFgGC-Rt7qa-N3Usd_O2VWFiW0J4T9Ae4xxG3-A/exec';
+                const scriptURL = 'https://script.google.com/macros/s/AKfycbzRFKZJNZHdeJmn5kABNj8jIL5iHQWfWhriT36Os6sTm7wSbYPMUi_Ln-cA3NAFG4s62w/exec';
 
                 // Create form data
                 const formData = new FormData();
